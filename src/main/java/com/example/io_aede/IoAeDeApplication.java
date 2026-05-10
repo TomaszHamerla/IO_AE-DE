@@ -18,9 +18,9 @@ public class IoAeDeApplication {
 
         EvolutionaryEngine engine = new EvolutionaryEngine();
         ReportGenerator report = new ReportGenerator();
-        BenchmarkFunction function = BenchmarkFunction.RASTRIGIN;
+        BenchmarkFunction function = BenchmarkFunction.SPHERE;
         int dimensions = 3;
-        int popSize = 50;
+        int popSize = 200; // agenci
 
         double[][] popAE = init(popSize, dimensions, function);
         double[][] popDE = init(popSize, dimensions, function);
@@ -28,8 +28,12 @@ public class IoAeDeApplication {
         JFrame frame = new JFrame("Porównanie Algorytmów: AE vs DE");
         frame.setLayout(new GridLayout(1, 2));
 
-        EvolutionVisualizer vizAE = new EvolutionVisualizer("Evolutionary Algorithm", new Color(0, 102, 204));
-        EvolutionVisualizer vizDE = new EvolutionVisualizer("Differential Evolution", new Color(204, 0, 0));
+        EvolutionVisualizer vizAE = new EvolutionVisualizer(
+                "Evolutionary Algorithm", new Color(0, 102, 204), function
+        );
+        EvolutionVisualizer vizDE = new EvolutionVisualizer(
+                "Differential Evolution", new Color(204, 0, 0), function
+        );
 
         frame.add(vizAE);
         frame.add(vizDE);
@@ -38,7 +42,7 @@ public class IoAeDeApplication {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-        for (int i = 0; i < 200; i++) {
+        for (int i = 0; i < 201; i++) {
             var resAE = engine.nextAE(popAE, function);
             var resDE = engine.nextDE(popDE, function, 0.8, 0.9);
 
