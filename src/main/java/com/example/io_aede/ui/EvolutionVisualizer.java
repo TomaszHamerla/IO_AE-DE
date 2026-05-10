@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class EvolutionVisualizer extends JPanel {
     private double[][] points;
-    private BenchmarkFunction function;
+    private final BenchmarkFunction function;
     private String title;
     private final Color color;
     private final int gridRes = 20;
